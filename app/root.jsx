@@ -5,6 +5,8 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  Link,
+  useCatch
 } from "@remix-run/react";
 
 import styles from "~/styles/shared.css"
@@ -15,10 +17,11 @@ export const meta = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export default function App() {
+function Document({ title, children }) {
   return (
     <html lang="en">
       <head>
+        <title>{title}</title>
         <Meta />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
@@ -26,14 +29,52 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        {children}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
       </body>
     </html>
-  );
+  )
 }
+
+export default function App() {
+  return (
+    <Document>
+      <Outlet />
+    </Document>
+
+  )
+}
+
+export function CatchBoundary() {
+
+  const caughtResponse = useCatch()
+
+  return (
+    <Document title={caughtResponse.statusText}>
+      <main>
+        <Error title={caughtResponse.statusText}>
+          <p>{caughtResponse.data?.message || "Something went wrong, please try again later"}</p>
+          <p>Back to <Link to="/">safety</Link>.</p>
+        </Error>
+      </main>
+    </Document>)
+}
+
+/*export function ErrorBoundary() {
+
+  return (
+    <Document title="An error occured">
+      <main>
+        <Error title="An error occured">
+          <p>{error.message || "Something went wrong, please try again later"}</p>
+          <p>Back to <Link to="/">safety</Link>.</p>
+        </Error>
+      </main>
+    </Document>
+  )
+}*/
 
 export function links() {
   return ({ rel: "stylesheet", href: styles })

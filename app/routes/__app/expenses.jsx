@@ -2,6 +2,7 @@ import {Outlet, Link, useLoaderData} from "@remix-run/react"
 import ExpensesList from "~/components/expenses/ExpensesList"
 import { FaDownload, FaPlus } from 'react-icons/fa';
 import { getExpenses } from "../../data/expenses.server";
+import { json } from "@remix-run/node";
 
 export default function Expenses(){
     const expenses = useLoaderData()
@@ -28,5 +29,12 @@ export default function Expenses(){
 }
 
 export async function loader(){
-    return getExpenses()
+    const expenses = await getExpenses()
+    
+    if(!expenses || expenses.length === 0){
+        throw json(
+            {message: "Could not find any expenses"}
+            {status: 404, statusText: "No expenses found"}
+        )
+    }
 }
