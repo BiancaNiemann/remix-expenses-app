@@ -1,6 +1,6 @@
 import { Outlet } from "@remix-run/react"
 import styles from "~/styles/marketing.css"
-import MainHeader from "../components/navigation/MainHeader"
+import MainHeader from "~/components/navigation/MainHeader"
 
 export default function MarketingLayout() {
     return (
@@ -12,5 +12,5 @@ export default function MarketingLayout() {
 }
 
 export function links() {
-    return ({ rel: "stylesheet", href: styles })
+    return [{ rel: "stylesheet", href: styles }]
 }

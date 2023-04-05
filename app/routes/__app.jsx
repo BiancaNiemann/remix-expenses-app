@@ -1,6 +1,6 @@
 import {Outlet} from "@remix-run/react"
 import styles from "~/styles/expenses.css"
-import ExpensesHeader from "../components/navigation/ExpensesHeader"
+import ExpensesHeader from "~/components/navigation/ExpensesHeader"
 
 export default function ExpensesAppLayout(){
     return (
@@ -12,5 +12,5 @@ export default function ExpensesAppLayout(){
 }
 
 export function links(){
-    return ({ rel: "stylesheet", href:styles})
+    return [{ rel: "stylesheet", href:styles}]
 }

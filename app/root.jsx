@@ -10,6 +10,7 @@ import {
 } from "@remix-run/react";
 
 import styles from "~/styles/shared.css"
+import Error from "~/components/util/Error"
 
 export const meta = () => ({
   charset: "utf-8",
@@ -23,9 +24,6 @@ function Document({ title, children }) {
       <head>
         <title>{title}</title>
         <Meta />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet" />
         <Links />
       </head>
       <body>
@@ -43,7 +41,6 @@ export default function App() {
     <Document>
       <Outlet />
     </Document>
-
   )
 }
 
@@ -62,8 +59,7 @@ export function CatchBoundary() {
     </Document>)
 }
 
-/*export function ErrorBoundary() {
-
+export function ErrorBoundary({ error }) {
   return (
     <Document title="An error occured">
       <main>
@@ -74,8 +70,8 @@ export function CatchBoundary() {
       </main>
     </Document>
   )
-}*/
+}
 
 export function links() {
-  return ({ rel: "stylesheet", href: styles })
+  return [{ rel: "stylesheet", href: styles }]
 }

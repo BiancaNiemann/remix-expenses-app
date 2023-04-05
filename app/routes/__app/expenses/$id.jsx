@@ -1,12 +1,12 @@
-import ExpenseForm from "~/components/expenses/ExpenseForm"
-import Modal from "../../../components/util/Modal"
-//import { getExpense } from "../../../data/expenses.server"
 import { useNavigate } from "@remix-run/react"
-import { deleteExpense, updateExpense } from "../../../data/expenses.server"
 import { redirect } from "@remix-run/node"
-import { validateExpenseInput } from "../../../data/validation.server"
 
-export default function Expense() {
+import ExpenseForm from "~/components/expenses/ExpenseForm"
+import Modal from "~/components/util/Modal"
+import { deleteExpense, updateExpense } from "~/data/expenses.server"
+import { validateExpenseInput } from "~/data/validation.server"
+
+export default function UpdateExpensePage() {
 
     const navigate = useNavigate()
 

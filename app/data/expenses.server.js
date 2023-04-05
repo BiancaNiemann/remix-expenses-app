@@ -1,4 +1,5 @@
 import { prisma } from "./database.server";
+import Error from "~/components/util/Error"
 
 
 export async function addExpense(expenseData) {

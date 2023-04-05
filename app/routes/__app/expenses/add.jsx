@@ -1,9 +1,10 @@
-import ExpenseForm from "~/components/expenses/ExpenseForm"
-import Modal from "../../../components/util/Modal"
 import { useNavigate } from "@remix-run/react"
-import { addExpense } from "../../../data/expenses.server"
 import { redirect } from "@remix-run/node"
-import { validateExpenseInput } from "../../../data/validation.server"
+
+import ExpenseForm from "~/components/expenses/ExpenseForm"
+import Modal from "~/components/util/Modal"
+import { addExpense } from "~/data/expenses.server"
+import { validateExpenseInput } from "~/data/validation.server"
 
 export default function AddExpense() {
 
